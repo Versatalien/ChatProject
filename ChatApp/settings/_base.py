@@ -54,6 +54,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    #project apps
+    'ChatApp.apps.chat',
+    #third_party apps
+    'channels',
+    
 ]
 
 MIDDLEWARE = [
@@ -94,6 +99,7 @@ STATICFILES_DIRS = [
 ]
 
 WSGI_APPLICATION = 'ChatApp.wsgi.application'
+ASGI_APPLICATION =  'ChatApp.routing.application'
 
 
 # Database
@@ -108,6 +114,17 @@ DATABASES = {
         'HOST':'',
         'PORT':'',
     }
+}
+
+#channel layer
+
+CHANNEL_LAYERS = {
+'default': {
+'BACKEND': 'channels_redis.core.RedisChannelLayer',
+'CONFIG': {
+'hosts': [('127.0.0.1', 6379)],
+},
+},
 }
 
 
